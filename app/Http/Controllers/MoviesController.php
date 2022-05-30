@@ -12,11 +12,30 @@ class MoviesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = $request->input('search');
+
         $movies = json_decode(file_get_contents(public_path() . "/movies.json"), true);
 
         return view('movies/index', compact('movies'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $movies = json_decode(file_get_contents(public_path() . "/movies.json"), true);
+        $matches = array();
+
+        foreach($movies as $movie){
+            if(preg_match("/\b$search\b/i", $movie['title']) || preg_match("/\b$search\b/i", $movie['year'])) {
+                array_push($matches, $movie);
+            }
+           
+        }
+
+        return view('movies.search', compact('matches'));
     }
 
     /**
@@ -51,7 +70,6 @@ class MoviesController extends Controller
         $movies = json_decode(file_get_contents(public_path() . "/movies.json"), true);
         foreach($movies as $movie){
             if($movie['id']==$id){ 
-                //$movie = json_encode($movie);
                 return view('movies.show',compact('movie'));
             }
         }  

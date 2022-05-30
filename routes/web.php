@@ -15,3 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'MoviesController@index');
 Route::get('/show/{movie}', 'MoviesController@show')->name('movies.show');
+Route::post('/search', "MoviesController@search");
+
+//Route::get('searchResults','PagesController@');

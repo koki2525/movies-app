@@ -87,15 +87,19 @@
                 <!-- Side widgets-->
                 <div class="col-lg-4">
                     <!-- Search widget-->
+                    <form class="form-inline" action="/search" method="POST">
+                    @csrf
+                    {{ csrf_field() }}
                     <div class="card mb-4">
                         <div class="card-header">Search for Movie</div>
                         <div class="card-body">
                             <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                                <input class="form-control" name="search" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="submit">>Go!</button>
                             </div>
                         </div>
                     </div>
+                    </form>
                     <!-- Categories widget-->
                     <div class="card mb-4">
                         <div class="card-header">Categories Available</div>
@@ -103,16 +107,16 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Action</a></li>
-                                        <li><a href="#!">Comedy</a></li>
-                                        <li><a href="#!">Crime</a></li>
+                                        <li>Action</li>
+                                        <li>Comedy</li>
+                                        <li>Crime</li>
                                     </ul>
                                 </div>
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Adventure</a></li>
-                                        <li><a href="#!">Drama</a></li>
-                                        <li><a href="#!">Fantasy</a></li>
+                                        <li>Adventure</li>
+                                        <li>Drama</li>
+                                        <li>Fantasy</li>
                                     </ul>
                                 </div>
                             </div>
